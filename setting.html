@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einstellungen - My Pocket Pal</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <header>
+        <h1>My Pocket Pal</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/#transactions">Transaktionen</a></li>
+            <li id="login-link"></li>
+            <li><a href="setting.html"><img src="/img/settings-icon.png" alt="Einstellungen" class="nav-icon"></a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="settings">
+            <h2>Einstellungen</h2>
+            <form id="settings-form">
+                <label for="currency">Währung:</label>
+                <select id="currency">
+                    <option value="EUR">Euro (EUR)</option>
+                    <option value="USD">US-Dollar (USD)</option>
+                    <option value="CHF">Franke (CHF)</option>
+                </select>
+                <label for="show-warnings">Warnungen anzeigen:</label>
+                <input type="checkbox" id="show-warnings" checked>Aktivieren
+                <br>
+
+
+                <label for="notification">Benachrichtigungen:</label>
+                <input type="checkbox" id="notification">Aktivieren
+                <br>
+
+
+
+                <button type="submit">Einstellungen speichern</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 My Pocket Pal</p>
+    </footer>
+    <script src="/js/main.js"></script>
+    <script src="/js/settings.js"></script> <!-- Stellen Sie sicher, dass diese Datei existiert -->
+</body>
+
+</html>

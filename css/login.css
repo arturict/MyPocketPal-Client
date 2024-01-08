@@ -1,0 +1,162 @@
+/* Gemeinsame Grundstile für beide Formulare */
+#form-container {
+    display: flex;
+    flex-wrap: wrap; /* Umbruch der Formulare auf kleinere Bildschirme */
+    justify-content: space-between;
+    max-width: 100%; /* Volle Breite des Elternelements nutzen */
+    margin: 0 auto;
+}
+
+/* Stile für das Login-Formular */
+#login-form, #register-form {
+    flex: 0 0 calc(50% - 2%); /* 2% Abstand zwischen den Formularen */
+    padding: 2%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin-bottom: 2%; /* Abstand zwischen den Formularen hinzufügen */
+}
+
+/* Stile für das Registrierungsformular */
+#register-form {
+    flex: 0 0 calc(50% - 1%); /* 1% Abstand zwischen den Formularen */
+    max-width: 45%; /* Maximale Breite für das Registrierungsformular */
+    margin: 2% 1% 0; /* In der Mitte ausrichten und Abstand hinzufügen */
+}
+
+/* Stile für Überschriften */
+#login-form h2, #register-form h2 {
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-bottom: 2%; /* Abstand zwischen den Überschriften und den Formularen */
+}
+
+/* Stile für Eingabefelder und Labels */
+#login-form label, #register-form label,
+#login-form input[type="text"],
+#login-form input[type="password"],
+#register-form input[type="text"],
+#register-form input[type="email"],
+#register-form input[type="password"] {
+    width: 100%;
+    padding: 2%;
+    margin-bottom: 2%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 2vw; /* Relative Schriftgröße in Bezug auf die Bildschirmbreite */
+}
+
+/* Stile für Buttons */
+#login-form button[type="submit"], #register-form button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 2% 4%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 2vw; /* Relative Schriftgröße in Bezug auf die Bildschirmbreite */
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+#login-form button[type="submit"]:hover, #register-form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+#form-container {
+    display: flex;
+    flex-wrap: wrap; /* Umbruch der Formulare auf kleinere Bildschirme */
+    justify-content: space-between;
+    max-width: 100%; /* Volle Breite des Elternelements nutzen */
+    margin: 0 auto;
+}
+
+/* Stile für das Login-Formular */
+#login-form, #register-form {
+    flex: 0 0 calc(50% - 2%); /* 2% Abstand zwischen den Formularen */
+    padding: 2%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin-bottom: 2%; /* Abstand zwischen den Formularen hinzufügen */
+}
+
+/* Stile für das Registrierungsformular */
+#register-form {
+    flex: 0 0 calc(50% - 1%); /* 1% Abstand zwischen den Formularen */
+    max-width: 45%; /* Maximale Breite für das Registrierungsformular */
+    margin: 2% 1% 0; /* In der Mitte ausrichten und Abstand hinzufügen */
+}
+
+/* Stile für Überschriften */
+#login-form h2, #register-form h2 {
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-bottom: 2%; /* Abstand zwischen den Überschriften und den Formularen */
+}
+
+/* Stile für Eingabefelder und Labels */
+#login-form label, #register-form label,
+#login-form input[type="text"],
+#login-form input[type="password"],
+#register-form input[type="text"],
+#register-form input[type="email"],
+#register-form input[type="password"] {
+    width: 100%;
+    padding: 2%;
+    margin-bottom: 2%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 2vw; /* Relative Schriftgröße in Bezug auf die Bildschirmbreite */
+}
+
+/* Stile für Buttons */
+#login-form button[type="submit"], #register-form button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 2% 4%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 2vw; /* Relative Schriftgröße in Bezug auf die Bildschirmbreite */
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+#login-form button[type="submit"]:hover, #register-form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Stile für Statusnachrichten */
+#login-status, #register-status {
+    display: none;
+}
+
+/* Medienabfragen für die Anordnung der Formulare auf Mobilgeräten */
+@media (max-width: 767px) {
+    #form-container {
+        flex-direction: column; /* Auf Mobilgeräten untereinander anordnen */
+    }
+
+    #login-form, #register-form {
+        flex: 0 0 100%; /* Vollständige Breite auf Mobilgeräten */
+        margin-bottom: 2%; /* Verringern Sie den Abstand zwischen den Formularen auf Mobilgeräten */
+    }
+}
+
+/* Medienabfragen für die Anordnung der Formulare auf Mobilgeräten */
+@media (max-width: 767px) {
+    #form-container {
+        flex-direction: column; /* Auf Mobilgeräten untereinander anordnen */
+    }
+
+    #login-form, #register-form {
+        flex: 0 0 100%; /* Vollständige Breite auf Mobilgeräten */
+        margin-bottom: 2%; /* Verringern Sie den Abstand zwischen den Formularen auf Mobilgeräten */
+    }
+}

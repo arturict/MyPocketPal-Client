@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pocket Pal</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <header>
+        <h1>My Pocket Pal</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/#transactions">Transaktionen</a></li>
+            <li id="login-link"></li>
+            <li><a href="setting.html"><img src="/img/settings-icon.png" alt="Einstellungen" class="nav-icon"></a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="transactions">
+            <h2>Transaktionen</h2>
+    <label for="filter-category">Filtern nach Kategorie:</label>
+    <select id="filter-category" name="filter-category">
+        <option value="">Alle Kategorien</option>
+    </select>
+            <button id="add-transaction-btn">Neue Transaktion</button>
+            <ul id="transaction-list"></ul>
+        </section>
+
+        <div id="add-transaction-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Neue Transaktion hinzufügen</h2>
+                <form id="new-transaction-form">
+                    <div class="transaction-type-container">
+                        <input type="radio" id="income" name="transaction-type" value="true" class="transaction-type-radio">
+                        <label for="income" class="transaction-type-label">Einnahme</label>
+                        <input type="radio" id="expense" name="transaction-type" value="false" checked class="transaction-type-radio">
+                        <label for="expense" class="transaction-type-label">Ausgabe</label>
+                    </div>
+                    
+                    <label for="new-amount">Betrag:</label>
+                    <input type="number" id="new-amount" name="amount" required>
+
+                    <label for="new-description">Beschreibung:</label>
+                    <input type="text" id="new-description" name="description" required>
+
+                    <label for="new-category">Kategorie (optional):</label>
+                    <select id="new-category" name="category">
+                        <option value="">Klicken zum auswählen</option>
+                        <option value="lebensmittel">Lebensmittel</option>
+                        <option value="transport">Transport</option>
+                        <option value="unterhaltung">Unterhaltung</option>
+                        <option value="elektronik">Elektronik und Technik</option>
+                        <option value="kleidung">Kleidung</option>
+                        <option value="onlineEinkauf">Online-Einkauf</option>
+                        <option value="gesundheit">Gesundheit</option>
+                        <option value="haushalt">Haushalt</option>
+                        <option value="bildung">Bildung</option>
+                        <option value="reisen">Reisen</option>
+                        <option value="sport">Sport</option>
+                        <option value="hobbys">Hobbys</option>
+                        <option value="finanzen">Finanzen</option>
+                        <option value="wohnen">Wohnen</option>
+                        <option value="andere">Andere</option>
+                    </select>
+
+                    <div id="custom-category-group">
+                        <label for="new-custom-category">Benutzerdefinierte Kategorie:</label>
+                        <input type="text" id="new-custom-category" name="custom-category">
+                    </div>
+                    <label for="new-date">Datum:</label>
+                    <input type="date" id="new-date" name="date">
+
+
+                    <button type="button" id="submit-transaction-btn">Transaktion speichern</button>
+                    <div class="message success-message" id="success-message"></div>
+                    <div class="message error-message" id="error-message"></div>
+                    <div class="message warning-message" id="warning-message"></div>
+
+
+
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 My Pocket Pal</p>
+    </footer>
+    <script src="/js/login.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

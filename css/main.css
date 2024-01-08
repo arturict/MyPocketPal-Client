@@ -1,0 +1,362 @@
+/* Reset und Basisstile */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4; /* Hintergrund im hellen Beige-Ton */
+    color: #5f4b33; /* Dunklerer Beige-Ton für Text */
+}
+
+/* Header und Logo-Stil */
+header {
+    padding: 20px 0;
+    background-color: #f5f0e6; /* Sehr heller Beige-Ton für den Header-Hintergrund */
+    text-align: center;
+}
+
+header h1 {
+    color: #a68b7b; /* Mittlerer Beige-Ton für das Logo */
+    font-size: 2em;
+    margin: 0;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+header h1:hover {
+    color: #7a6a58; /* Dunklerer Beige-Ton für Hover-Effekt */
+}
+
+/* Navigation-Stile */
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #8d7b69; /* Beige-Ton für Links */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+    color: #7a6a58; /* Dunklerer Beige-Ton für Hover-Effekt */
+    transform: scale(1.1);
+}
+
+/* Hauptinhalt-Stile */
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff; /* Weißer Hintergrund für Hauptinhalt */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+main:hover {
+    background-color: #f9f9f9; /* Hellere Hintergrundfarbe bei Hover */
+}
+
+/* Button-Stile */
+button {
+    background-color: #a68b7b; /* Mittlerer Beige-Ton für Buttons */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    background-color: #8d7b69; /* Dunklerer Beige-Ton für Hover-Effekt */
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Verbesserte Input-Box-Stile */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc; /* Helle Beige-Umrandung */
+    border-radius: 4px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-size: 1em;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #a68b7b; /* Fokus-Farbe in Beige */
+    box-shadow: 0 0 0 2px rgba(166, 139, 123, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    transform: scale(1.02);
+}
+
+/* Formular- und Label-Stile */
+form {
+    background-color: #f9f9f9; /* Sehr heller Beige-Ton für Formular-Hintergrund */
+    border: 1px solid #eee;
+    padding: 20px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+form:hover {
+    background-color: #fafafa; /* Hellere Hintergrundfarbe bei Hover */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #5f4b33; /* Dunklerer Beige-Ton für Label-Text */
+}
+
+/* Footer-Stile */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background: #f5f0e6; /* Sehr heller Beige-Ton für Footer-Hintergrund */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    transition: opacity 0.3s ease;
+}
+
+
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.nav-icon {
+    height: 30px; 
+    width: 30px;
+}
+/* Responsive Design-Anpassungen */
+@media (max-width: 768px) {
+    header, nav, main, footer {
+        padding: 0 10px;
+    }
+    
+    main {
+        width: auto;
+    }
+    
+    button {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-icon {
+        height: 20px; 
+        width: 20px;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="time"],
+    input[type="email"],
+    select,
+    textarea {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 400px) {
+    .nav-icon {
+        height: 16px; 
+        width: 16px;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="time"],
+    input[type="email"],
+    select,
+    textarea {
+        font-size: 0.8em;
+    }
+}
+#add-transaction-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s, visibility 0.3s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+}
+
+#add-transaction-modal.modal-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    transition: transform 0.3s ease, margin 0.3s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#add-transaction-modal.modal-open .modal-content {
+    transform: translate(-50%, -50%);
+    margin: 100px auto;
+}
+/* CSS für die Erfolgs- und Fehlermeldungen */
+.message {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.success-message {
+    background-color: #4CAF50; /* Grün für Erfolg */
+}
+
+.error-message {
+    background-color: #f44336; /* Rot für Fehler */
+}
+.warning-message {
+    background-color: orange;
+  }
+  .delete-button {
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.delete-button:hover {
+    background-color: darkred;
+}
+.transactions-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #fff; /* Hintergrundfarbe der Tabelle */
+}
+
+.transactions-table th, .transactions-table td {
+    border-bottom: 1px solid #ddd; /* Trennlinie zwischen den Zeilen */
+    padding: 15px;
+    text-align: left;
+}
+
+.transactions-table th {
+    background-color: #f5f0e6; /* Hintergrundfarbe der Kopfzeile */
+    color: #5f4b33; /* Textfarbe der Kopfzeile */
+}
+
+.transactions-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra-Streifen für Zeilen */
+}
+
+.transactions-table tr:hover {
+    background-color: #f1f1f1; /* Hover-Farbe für Zeilen */
+}
+
+.options {
+    text-align: center;
+    cursor: pointer;
+}
+
+.more-options {
+    font-size: 24px;
+    color: #a68b7b; /* Farbe der Optionen-Punkte */
+}
+
+
+/* Stil für Einnahme/Ausgabe Radio-Buttons */
+.transaction-type-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.transaction-type-radio {
+    display: none;
+}
+
+.transaction-type-label {
+    padding: 5px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.transaction-type-radio:checked + .transaction-type-label {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Weitere Stile... */
