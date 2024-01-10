@@ -23,13 +23,26 @@
     <main>
         <section id="transactions">
             <h2>Transaktionen</h2>
-    <label for="filter-category">Filtern nach Kategorie:</label>
-    <select id="filter-category" name="filter-category">
-        <option value="">Alle Kategorien</option>
-    </select>
-            <button id="add-transaction-btn">Neue Transaktion</button>
-            <ul id="transaction-list"></ul>
+            <label for="filter-category">Filtern nach Kategorie:</label>
+            <select id="filter-category" name="filter-category">
+                <option value="">Alle Kategorien</option>
+            </select>
+            <label for="filter-income">Filtern nach Typ:</label>
+            <select id="filter-income" name="filter-income">
+                <option value="">Alle Typen</option>
+                <option value="true">Einkommen</option>
+                <option value="false">Ausgaben</option>
+            </select>
+            
+        <section id="user-balance-container">
+            <h3>Aktueller Saldo:</h3>
+            <div id="user-balance">Saldo wird geladen...</div>
         </section>
+        
+        <button id="add-transaction-btn">Neue Transaktion</button>
+        <button id="export-button">Transaktionen exportieren</button>
+        <ul id="transaction-list"></ul>
+    </section>
 
         <div id="add-transaction-modal" class="modal">
             <div class="modal-content">
@@ -81,17 +94,15 @@
                     <div class="message success-message" id="success-message"></div>
                     <div class="message error-message" id="error-message"></div>
                     <div class="message warning-message" id="warning-message"></div>
-
-
-
                 </form>
             </div>
         </div>
+
     </main>
     <footer>
         <p>&copy; 2023 My Pocket Pal</p>
     </footer>
-    <script src="/js/login.js"></script>
+    <script src="/js/index.js"></script>
     <script src="/js/main.js"></script>
 </body>
 </html>

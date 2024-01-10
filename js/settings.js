@@ -1,27 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
-    loadOrCreateSettings();
-    document.getElementById('settings-form').addEventListener('submit', saveSettings);
-});
+document.addEventListener('DOMContentLoaded', initializeApp);
 
-async function loadOrCreateSettings() {
-    const response = await fetch('https://localhost:7248/api/settings/', { /* Ihr Fetch-Setup */ });
-    if (!response.ok) {
-        // Wenn keine Einstellungen gefunden, erstelle Standardwerte
-        await createDefaultSettings();
+async function initializeApp() {
+    const userStatus = await checkUserStatusAndUpdateUI();
+
+    if (userStatus && userStatus.isLoggedIn) {
+        loadOrCreateSettings();
+        showLogoutButton(userStatus.username);
+    } else {
+        showLoginButton();
     }
-    const settings = await response.json();
-    setFormValues(settings);
 }
 
-async function createDefaultSettings() {
-    // Senden Sie einen Request, um Standardwerte in der Datenbank zu erstellen
-}
 
-function setFormValues(settings) {
-    // Setzen Sie die Formularwerte basierend auf den geladenen Einstellungen
-}
 
-async function saveSettings(event) {
-    event.preventDefault();
-    // Sammeln und senden Sie die aktualisierten Einstellungen an den Server
-}
