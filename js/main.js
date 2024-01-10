@@ -387,10 +387,13 @@ function showLoginButton() {
   loginLink.innerHTML = '<button onclick="location.href=\'/login.html\'">Login</button>';
 }
 
-function showLogoutButton() {
-    const loginLink = document.getElementById("login-link");
-    loginLink.innerHTML = `<button onclick="logout()">Logout</button>`;
-  }
+function showLogoutButton(username) {
+  const logoutButton = document.createElement("button");
+  logoutButton.innerText = `Logout (${username})`;
+  logoutButton.onclick = logout; 
+  loginLink.innerHTML = ""; 
+  loginLink.appendChild(logoutButton);
+}
   
   function logout() {
       fetch('https://localhost:7248/api/user/logout', {
@@ -438,12 +441,8 @@ function showLogoutButton() {
 }
 
 async function checkUserStatusAndUpdateUI() {
-    let userStatus = retrieveFromStorage();
-    if (!userStatus || !userStatus.isLoggedIn) {
-        userStatus = await getUserStatus();
-        storeInStorage(userStatus);
-    }
-  
+    const userStatus = await getUserStatus();
+
     if (userStatus && userStatus.isLoggedIn) {
         showLogoutButton(userStatus.username);
         return userStatus; 
@@ -451,48 +450,22 @@ async function checkUserStatusAndUpdateUI() {
         showLoginButton();
         return null; 
     }
-  }
-  function storeInStorage(userStatus) {
+}
+
+async function getUserStatus() {
     try {
-        const dataToStore = {
-            ...userStatus,
-            expiry: new Date().getTime() + (7 * 24 * 60 * 60 * 1000) 
-        };
-        localStorage.setItem('userStatus', JSON.stringify(dataToStore));
-    } catch (e) {
-        sessionStorage.setItem('userStatus', JSON.stringify(userStatus));
+       const response = await fetch('https://localhost:7248/api/user/status', {
+            method: 'GET', 
+            credentials: 'include'
+        });
+
+        if (!response.ok) {
+            throw new Error("Fehler beim Abrufen des Benutzerstatus.");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Fehler beim Abrufen des Benutzerstatus:", error);
+        return { isLoggedIn: false };
     }
-  }
-  
-  function retrieveFromStorage() {
-    const userData = localStorage.getItem('userStatus') || sessionStorage.getItem('userStatus');
-    if (!userData) return null;
-  
-    const data = JSON.parse(userData);
-    if (new Date().getTime() > data.expiry) {
-        localStorage.removeItem('userStatus');
-        sessionStorage.removeItem('userStatus');
-        return null;
-    }
-    return data;
-  }
-  
-  
-  async function getUserStatus() {
-      try {
-         const response = await fetch('https://localhost:7248/api/user/status', {
-      method: 'GET', 
-      credentials: 'include'
-  });
-  
-  
-          if (!response.ok) {
-              throw new Error("Fehler beim Abrufen des Benutzerstatus.");
-          }
-  
-          return await response.json();
-      } catch (error) {
-          console.error("Fehler beim Abrufen des Benutzerstatus:", error);
-          return { isLoggedIn: false };
-      }
-  }
+}

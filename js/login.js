@@ -9,11 +9,7 @@ registerForm.addEventListener("submit", handleRegister);
 const loginLink = document.getElementById("login-link");
 
 async function checkUserStatusAndUpdateUI() {
-  let userStatus = retrieveFromStorage();
-  if (!userStatus || !userStatus.isLoggedIn) {
-      userStatus = await getUserStatus();
-      storeInStorage(userStatus);
-  }
+  const userStatus = await getUserStatus();
 
   if (userStatus && userStatus.isLoggedIn) {
       showLogoutButton(userStatus.username);
@@ -24,50 +20,24 @@ async function checkUserStatusAndUpdateUI() {
   }
 }
 
-function storeInStorage(userStatus) {
-  try {
-      const dataToStore = {
-          ...userStatus,
-          expiry: new Date().getTime() + (7 * 24 * 60 * 60 * 1000) 
-      };
-      localStorage.setItem('userStatus', JSON.stringify(dataToStore));
-  } catch (e) {
-      sessionStorage.setItem('userStatus', JSON.stringify(userStatus));
-  }
-}
-
-function retrieveFromStorage() {
-  const userData = localStorage.getItem('userStatus') || sessionStorage.getItem('userStatus');
-  if (!userData) return null;
-
-  const data = JSON.parse(userData);
-  if (new Date().getTime() > data.expiry) {
-      localStorage.removeItem('userStatus');
-      sessionStorage.removeItem('userStatus');
-      return null;
-  }
-  return data;
-}
-
-
 async function getUserStatus() {
-    try {
-       const response = await fetch('https://localhost:7248/api/user/status', {
-    method: 'GET', 
-    credentials: 'include'
-});
+  try {
+     const response = await fetch('https://localhost:7248/api/user/status', {
+          method: 'GET', 
+          credentials: 'include'
+      });
 
+      if (!response.ok) {
+          throw new Error("Fehler beim Abrufen des Benutzerstatus.");
+      }
 
-        if (!response.ok) {
-            throw new Error("Fehler beim Abrufen des Benutzerstatus.");
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error("Fehler beim Abrufen des Benutzerstatus:", error);
-        return { isLoggedIn: false, username: error };
-    }
+      return await response.json();
+  } catch (error) {
+      console.error("Fehler beim Abrufen des Benutzerstatus:", error);
+      return { isLoggedIn: false };
+  }
 }
+
 
 // Hilfsfunktion zur Validierung von E-Mail
 function validateEmail(email) {
@@ -118,7 +88,7 @@ async function handleRegister(event) {
     
 
     setTimeout(() => {
-      window.location.href = "/"; // Weiterleitung zur Startseite
+      window.location.href = "/"; 
     }, 2500);
   } catch (error) {
     displayMessage(registerStatus, error.message, false);
@@ -172,6 +142,9 @@ async function handleLogin(event) {
     const responseData = await response.json();
     displayMessage(loginStatus, "Login erfolgreich!", true);
     showLogoutButton(username);
+    setTimeout(() => {
+      window.location.href = "/"; 
+    }, 2500);
   } catch (error) {
     console.error("Fehler beim Login:", error);
     displayMessage(loginStatus, error.message, false);
@@ -186,16 +159,6 @@ function showLoginButton() {
   const loginLink = document.getElementById("login-link");
   loginLink.innerHTML = '<button onclick="location.href=\'/login.html\'">Login</button>';
 }
-//function getSessionId() {//
- // const cookies = document.cookie.split(";");
-//  for (const cookie of cookies) {
- //   const parts = cookie.trim().split("=");
- //   if (parts[0] === "SessionId") {
- //     return parts[1];
- //   }
- // }
- // return null;
-//}
 
 function showLogoutButton(username) {
   const logoutButton = document.createElement("button");
