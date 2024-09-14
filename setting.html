@@ -20,37 +20,40 @@
         </ul>
     </nav>
 
-
-<main>
-    <section id="settings">
-        <h2>Einstellungen</h2>
-        <form id="settings-form">
-            <label for="currency">Währung:</label>
-            <select id="currency">
-                <option value="EUR">Euro (EUR)</option>
-                <option value="USD">US-Dollar (USD)</option>
-                <option value="CHF">Franke (CHF)</option>
-            </select>
-            <label for="show-warnings">Warnungen anzeigen:</label>
-            <input type="checkbox" id="show-warnings" checked>Aktivieren
-            <br>
-
-            <label for="notification">Benachrichtigungen:</label>
-            <input type="checkbox" id="notification">Aktivieren
-            <br>
-
-            <button type="submit">Einstellungen speichern</button> 
-        </form>
-    </section>
-</main>
-
+    <main>
+        <section id="settings">
+            <h2>Einstellungen</h2>
+            <div class="message success-message" id="success-message"></div>
+            <div class="message error-message" id="error-message"></div>
+            <div class="message warning-message" id="warning-message"></div>
+    
+            <form id="settings-form">
+                <label for="monthly-budget">Monatliches Budget:</label>
+                <input type="number" id="monthly-budget" step="1" placeholder="Geben Sie Ihr monatliches Budget ein">
+                
+                <h2>Andere Einstellungen</h2>
+                
+                <label for="currency">Währung:</label>
+                <select id="currency"></select>
+                <label for="show-warnings">Warnungen anzeigen:</label>
+                <input type="checkbox" id="show-warnings" checked>Aktivieren
+                <br>
+                <label for="notification">Benachrichtigungen:</label>
+                <input type="checkbox" id="notification">Aktivieren
+                <br>
+                
+                <button type="submit">Einstellungen speichern</button>
+            </form>
+        </section>
+    </main>
+    
 
 
     <footer>
         <p>&copy; 2023 My Pocket Pal</p>
     </footer>
-    <script src="/js/settings.js"></script> 
     <script src="/js/main.js"></script>
+    <script src="/js/settings.js"></script>
 </body>
 
 </html>

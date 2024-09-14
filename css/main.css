@@ -275,11 +275,11 @@ footer {
 }
 
 .success-message {
-    background-color: #4CAF50; /* Grün für Erfolg */
+    background-color: #4CAF50; 
 }
 
 .error-message {
-    background-color: #f44336; /* Rot für Fehler */
+    background-color: #f44336;
 }
 .warning-message {
     background-color: orange;
@@ -359,4 +359,58 @@ footer {
     color: white;
 }
 
-/* Weitere Stile... */
+/* Stil für den Container */
+#user-balance-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Stil für den Saldo */
+#user-balance {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Stil für die Warnung */
+#balance-warning {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.transactions-filter-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.transactions-filter-toggle span {
+    font-weight: bold;
+}
+
+.transactions-arrow {
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.transactions-arrow-down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.transactions-arrow-right {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.transactions-filter-options {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+

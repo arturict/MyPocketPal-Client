@@ -6,7 +6,3 @@ document.addEventListener("DOMContentLoaded", function () {
   const registerForm = document.getElementById("register-form");
 registerForm.addEventListener("submit", handleRegister);
 });
-
-
-
-

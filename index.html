@@ -21,28 +21,69 @@
     </nav>
 
     <main>
-        <section id="transactions">
+        <section id="transactions-section">
             <h2>Transaktionen</h2>
-            <label for="filter-category">Filtern nach Kategorie:</label>
-            <select id="filter-category" name="filter-category">
-                <option value="">Alle Kategorien</option>
-            </select>
-            <label for="filter-income">Filtern nach Typ:</label>
-            <select id="filter-income" name="filter-income">
-                <option value="">Alle Typen</option>
-                <option value="true">Einkommen</option>
-                <option value="false">Ausgaben</option>
-            </select>
-            
+
+            <div class="transactions-filter-toggle" onclick="toggleTransactionFilters()">
+                <span>Filter anzeigen</span>
+                <i id="transactions-toggle-icon" class="transactions-arrow transactions-arrow-down"></i>
+            </div>
+
+            <div id="transactions-filter-options" class="transactions-filter-options">
+                <label for="transactions-filter-category">Filtern nach Kategorie:</label>
+                <select id="transactions-filter-category" name="transactions-filter-category">
+                    <option value="">Alle Kategorien</option>
+                </select>
+
+                <label for="transactions-filter-income">Filtern nach Typ:</label>
+                <select id="transactions-filter-income" name="transactions-filter-income">
+                    <option value="">Alle Typen</option>
+                    <option value="true">Einkommen</option>
+                    <option value="false">Ausgaben</option>
+                </select>
+
+                <label for="transactions-filter-date">Filtern nach Datum:</label>
+                <select id="transactions-filter-date" name="transactions-filter-date">
+                    <option value="custom">Benutzerdefiniert</option>
+                    <option value="month">Dieser Monat</option>
+                    <option value="year">Dieses Jahr</option>
+                </select>
+
+                <label for="transactions-sort-field">Sortieren nach:</label>
+                <select id="transactions-sort-field" name="transactions-sort-field">
+                    <option value="date">Datum</option>
+                    <option value="amount">Betrag</option>
+                </select>
+
+                <label for="transactions-sort-order">Sortierreihenfolge:</label>
+                <select id="transactions-sort-order" name="transactions-sort-order">
+                    <option value="desc">Absteigend</option>
+                    <option value="asc">Aufsteigend</option>
+                </select>
+                <button id="apply-transactions-filters">Filter anwenden</button>
+
+            </div>
+
+        </section>
+
+
+
+
         <section id="user-balance-container">
             <h3>Aktueller Saldo:</h3>
             <div id="user-balance">Saldo wird geladen...</div>
+            <div id="balance-warning">Wird geladen</div>
         </section>
-        
+
+
         <button id="add-transaction-btn">Neue Transaktion</button>
         <button id="export-button">Transaktionen exportieren</button>
+        <button id="import-button">Transaktionen importieren</button>
+        <input type="file" id="import-file" style="display: none;">
+
+
         <ul id="transaction-list"></ul>
-    </section>
+        </section>
 
         <div id="add-transaction-modal" class="modal">
             <div class="modal-content">
@@ -50,12 +91,14 @@
                 <h2>Neue Transaktion hinzufügen</h2>
                 <form id="new-transaction-form">
                     <div class="transaction-type-container">
-                        <input type="radio" id="income" name="transaction-type" value="true" class="transaction-type-radio">
+                        <input type="radio" id="income" name="transaction-type" value="true"
+                            class="transaction-type-radio">
                         <label for="income" class="transaction-type-label">Einnahme</label>
-                        <input type="radio" id="expense" name="transaction-type" value="false" checked class="transaction-type-radio">
+                        <input type="radio" id="expense" name="transaction-type" value="false" checked
+                            class="transaction-type-radio">
                         <label for="expense" class="transaction-type-label">Ausgabe</label>
                     </div>
-                    
+
                     <label for="new-amount">Betrag:</label>
                     <input type="number" id="new-amount" name="amount" required>
 
@@ -97,12 +140,69 @@
                 </form>
             </div>
         </div>
+        <div id="update-transaction-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeTransactionOptionsModal()">&times;</span>
+                <h2>Transaktion aktualisieren</h2>
+                <form id="update-transaction-form">
+                    <input type="hidden" id="update-transaction-id" name="transactionId">
 
+                    <div class="transaction-type-container">
+                        <input type="radio" id="update-income" name="transaction-type" value="true"
+                            class="transaction-type-radio">
+                        <label for="update-income" class="transaction-type-label">Einnahme</label>
+                        <input type="radio" id="update-expense" name="transaction-type" value="false"
+                            class="transaction-type-radio">
+                        <label for="update-expense" class="transaction-type-label">Ausgabe</label>
+                    </div>
+
+                    <label for="update-amount">Betrag:</label>
+                    <input type="number" id="update-amount" name="amount" required>
+
+                    <label for="update-description">Beschreibung:</label>
+                    <input type="text" id="update-description" name="description" required>
+
+                    <label for="update-category">Kategorie (optional):</label>
+                    <select id="update-category" name="category">
+                        <option value="">Klicken zum auswählen</option>
+                        <option value="lebensmittel">Lebensmittel</option>
+                        <option value="transport">Transport</option>
+                        <option value="unterhaltung">Unterhaltung</option>
+                        <option value="elektronik">Elektronik und Technik</option>
+                        <option value="kleidung">Kleidung</option>
+                        <option value="onlineEinkauf">Online-Einkauf</option>
+                        <option value="gesundheit">Gesundheit</option>
+                        <option value="haushalt">Haushalt</option>
+                        <option value="bildung">Bildung</option>
+                        <option value="reisen">Reisen</option>
+                        <option value="sport">Sport</option>
+                        <option value="hobbys">Hobbys</option>
+                        <option value="finanzen">Finanzen</option>
+                        <option value="wohnen">Wohnen</option>
+                        <option value="andere">Andere</option>
+                    </select>
+
+                    <div id="update-custom-category-group">
+                        <label for="update-custom-category">Benutzerdefinierte Kategorie:</label>
+                        <input type="text" id="update-custom-category" name="custom-category">
+                    </div>
+                    <label for="update-date">Datum:</label>
+                    <input type="date" id="update-date" name="date">
+
+                    <button type="button" id="submit-update-transaction-btn">Transaktion aktualisieren</button>
+                    <div class="message success-message" id="update-success-message"></div>
+                    <div class="message error-message" id="update-error-message"></div>
+                    <div class="message warning-message" id="update-warning-message"></div>
+                </form>
+            </div>
+        </div>
     </main>
     <footer>
-        <p>&copy; 2023 My Pocket Pal</p>
+        <p>&copy; 2023 My Pocket Pal- By Artur</p>
     </footer>
-    <script src="/js/index.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/index.js"></script>
 </body>
+
 </html>
+!
